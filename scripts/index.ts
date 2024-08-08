@@ -32,16 +32,21 @@ const reviews: {
   },
 ];
 
+// Declares Perms variables
+const ADMIN = "admin";
+const READ_ONLY = "read-only";
+
+// Custom type
+enum Permissions {
+  ADMIN,
+  READ_ONLY,
+}
+
 // Declares you object
-const you: {
-  firstName: string;
-  lastName: string;
-  isReturning: boolean;
-  age: number;
-  stayedAt: string[];
-} = {
+const you = {
   firstName: "Bobby",
   lastName: "Brown",
+  permissions: Permissions.ADMIN,
   isReturning: true,
   age: 35,
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
