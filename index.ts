@@ -43,9 +43,16 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 // --------------------------------------------------------------------------
 
 // Declares you object
-const you = {
-  userName: "Wade",
+const you: {
+  firstName: string;
+  lastName: string;
+  isReturning: boolean;
+  age: number;
+} = {
+  firstName: "Wade",
+  lastName: "Wilson",
   isReturning: true,
+  age: 35,
 };
 
 // Function to distplay if the user is returning or not
