@@ -2,6 +2,7 @@
 import { showReviewTotal, populateUser } from "./utils";
 
 const propertyContainer = document.querySelector(".properties");
+const footer = document.querySelector(".footer");
 let isOpen: boolean;
 
 // Declares reviews array
@@ -119,3 +120,13 @@ for (let i = 0; i < properties.length; i++) {
   card.appendChild(image);
   propertyContainer.appendChild(card);
 }
+
+// Footer for site
+let currentLocation = ["CapeTown", "17:46", 14];
+footer.innerHTML =
+  currentLocation[0] +
+  " " +
+  currentLocation[1] +
+  " " +
+  currentLocation[2] +
+  "°";
