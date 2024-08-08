@@ -6,7 +6,8 @@ import { Permissions, LoyaltyUser } from "./enums";
 
 const propertyContainer = document.querySelector(".properties");
 const footer = document.querySelector(".footer");
-let isOpen: boolean;
+
+let isLoggedIn: boolean;
 
 // Declares reviews array
 const reviews: any[] = [
@@ -33,8 +34,8 @@ const reviews: any[] = [
 
 // Declares you object
 const you = {
-  firstName: "Bobby",
-  lastName: "Brown",
+  firstName: "Wade",
+  lastName: "Wilson",
   permissions: Permissions.ADMIN,
   isReturning: true,
   age: 35,
@@ -104,6 +105,24 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 // Calls function with you object
 populateUser(you.isReturning, you.firstName);
 
+// Declares as any type
+let authorityStatus: any;
+
+isLoggedIn = false;
+
+// Displays pricing
+function showDetails(
+  authorityStatus: boolean | Permissions,
+  element: HTMLDivElement,
+  price: number
+) {
+  if (authorityStatus) {
+    const priceDisplay = document.createElement("div");
+    priceDisplay.innerHTML = price.toString() + "/night";
+    element.appendChild(priceDisplay);
+  }
+}
+
 // Displays properties on page
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement("div");
@@ -113,6 +132,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
   propertyContainer.appendChild(card);
+  showDetails({}, card, properties[i].price);
 }
 
 // Footer for site
