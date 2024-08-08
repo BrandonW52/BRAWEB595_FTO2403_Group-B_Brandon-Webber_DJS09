@@ -1,4 +1,6 @@
 // Declares HTML element
+const returningUserDisplay = document.querySelector("#returning-user");
+const userNameDisplay = document.querySelector("#user");
 const reviewTotalDisplay = document.querySelector("#reviews");
 
 // Declares reviews array
@@ -35,5 +37,24 @@ function showReviewTotal(value: number, reviewer: string, isLoyalty: boolean) {
     iconDisplay;
 }
 
-// Call function with reviews array
+// Calls function with reviews array
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
+
+// --------------------------------------------------------------------------
+
+// Declares you object
+const you = {
+  userName: "Wade",
+  isReturning: true,
+};
+
+// Function to distplay if the user is returning or not
+function populateUser(isReturning: boolean, userName: string) {
+  if (isReturning) {
+    returningUserDisplay.innerHTML = "back";
+  }
+  userNameDisplay.innerHTML = userName;
+}
+
+// Calls function with you object
+populateUser(you.isReturning, you.userName);
