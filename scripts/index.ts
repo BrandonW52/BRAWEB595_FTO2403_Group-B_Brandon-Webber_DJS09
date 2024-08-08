@@ -4,6 +4,9 @@ import { showReviewTotal, populateUser } from "./utils";
 // imports enums
 import { Permissions, LoyaltyUser } from "./enums";
 
+// imports type Alias
+import { Price, Country } from "./types";
+
 const propertyContainer = document.querySelector(".properties");
 const footer = document.querySelector(".footer");
 
@@ -51,7 +54,7 @@ const properties: {
     firstLine: string;
     city: string;
     code: number;
-    country: string;
+    country: Country;
   };
   contact: [number, string];
   isAvailable: boolean;
@@ -66,7 +69,7 @@ const properties: {
       code: 45632,
       country: "Colombia",
     },
-    contact: [+1123495082908, "marywinkle@gmail.com"],
+    contact: [+112343823978921, "marywinkle@gmail.com"],
     isAvailable: true,
   },
   {
@@ -79,7 +82,7 @@ const properties: {
       code: 343903,
       country: "Poland",
     },
-    contact: [+1123495082908, "garydavis@hotmail.com"],
+    contact: [+1298239028490830, "garydavis@hotmail.com"],
     isAvailable: false,
   },
   {
@@ -92,7 +95,7 @@ const properties: {
       code: 35433,
       country: "United Kingdom",
     },
-    contact: [+1123495082908, "andyluger@aol.com"],
+    contact: [+34829374892553, "andyluger@aol.com"],
     isAvailable: true,
   },
 ];
@@ -132,7 +135,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
   propertyContainer.appendChild(card);
-  showDetails({}, card, properties[i].price);
+  showDetails(you.permissions, card, properties[i].price);
 }
 
 // Footer for site
