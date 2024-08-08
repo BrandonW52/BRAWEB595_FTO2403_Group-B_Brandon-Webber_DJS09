@@ -23,10 +23,11 @@ const reviews = [
   },
 ];
 
-// Funtion to display total reviews
-function showReviewTotal(value: number) {
-  reviewTotalDisplay.innerHTML = "review total " + value.toString();
+// Funtion to display total reviews && the name of the last reviewer
+function showReviewTotal(value: number, reviewer: string) {
+  reviewTotalDisplay.innerHTML =
+    "review total " + value.toString() + "| last reviewed by " + reviewer;
 }
 
 // Call function with reviews array
-showReviewTotal(reviews.length);
+showReviewTotal(reviews.length, reviews[0].name);
