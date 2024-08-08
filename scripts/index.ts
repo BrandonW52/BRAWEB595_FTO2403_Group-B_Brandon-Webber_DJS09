@@ -1,5 +1,5 @@
 // imports util functions
-import { showReviewTotal, populateUser } from "./utils";
+import { showReviewTotal, populateUser, showDetails } from "./utils";
 
 // imports enums
 import { Permissions, LoyaltyUser } from "./enums";
@@ -31,7 +31,7 @@ const reviews: any[] = [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: "Great hosts, location was a bit further than said",
+    description: "Great hosts, location was a bit further than said.",
   },
 ];
 
@@ -54,7 +54,7 @@ const properties: {
     firstLine: string;
     city: string;
     code: number;
-    country: Country;
+    country: string;
   };
   contact: [number, string];
   isAvailable: boolean;
@@ -108,24 +108,6 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 // Calls function with you object
 populateUser(you.isReturning, you.firstName);
 
-// Declares as any type
-let authorityStatus: any;
-
-isLoggedIn = false;
-
-// Displays pricing
-function showDetails(
-  authorityStatus: boolean | Permissions,
-  element: HTMLDivElement,
-  price: number
-) {
-  if (authorityStatus) {
-    const priceDisplay = document.createElement("div");
-    priceDisplay.innerHTML = price.toString() + "/night";
-    element.appendChild(priceDisplay);
-  }
-}
-
 // Displays properties on page
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement("div");
@@ -134,8 +116,8 @@ for (let i = 0; i < properties.length; i++) {
   const image = document.createElement("img");
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
-  propertyContainer.appendChild(card);
   showDetails(you.permissions, card, properties[i].price);
+  propertyContainer.appendChild(card);
 }
 
 // Footer for site

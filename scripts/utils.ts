@@ -14,8 +14,9 @@ export function showReviewTotal(
 ) {
   const iconDisplay = LoyaltyUser.GOLD_USER ? "⭐" : "";
   reviewTotalDisplay.innerHTML =
-    "review total " +
     value.toString() +
+    " Review" +
+    makeMultiple(value) +
     "| last reviewed by " +
     reviewer +
     " " +
@@ -28,4 +29,24 @@ export function populateUser(isReturning: boolean, userName: string) {
     returningUserDisplay.innerHTML = "back";
   }
   userNameDisplay.innerHTML = userName;
+}
+
+// Displays pricing
+export function showDetails(
+  authorityStatus: boolean | Permissions,
+  element: HTMLDivElement,
+  price: number
+) {
+  if (authorityStatus) {
+    const priceDisplay = document.createElement("div");
+    priceDisplay.innerHTML = price.toString() + "/night";
+    element.appendChild(priceDisplay);
+  }
+}
+
+// Function to add or remove s from reviews count
+export function makeMultiple(value: number): string {
+  if (value > 1 || value == 0) {
+    return "s";
+  } else return "";
 }
