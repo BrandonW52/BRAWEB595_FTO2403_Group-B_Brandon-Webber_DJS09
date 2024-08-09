@@ -1,11 +1,15 @@
 // imports util functions
-import { showReviewTotal, populateUser, showDetails } from "./utils";
+import {
+  showReviewTotal,
+  populateUser,
+  showDetails,
+  getTopTwoReviews,
+} from "./utils";
+
+import { MainProperty } from "./classes";
 
 // imports enums
 import { Permissions, LoyaltyUser } from "./enums";
-
-// imports type Alias
-import { Price, Country } from "./types";
 
 // imports review interface
 import { Review, Property } from "./interfaces";
@@ -53,7 +57,7 @@ const you = {
 // Declares properties object
 const properties: Property[] = [
   {
-    image: "images/colombia-property.jpg",
+    image: "../images/colombia-property.jpg",
     title: "Colombian Shack",
     price: 45,
     location: {
@@ -66,7 +70,7 @@ const properties: Property[] = [
     isAvailable: true,
   },
   {
-    image: "images/poland-property.jpg",
+    image: "../images/poland-property.jpg",
     title: "Polish Cottage",
     price: 30,
     location: {
@@ -79,7 +83,7 @@ const properties: Property[] = [
     isAvailable: false,
   },
   {
-    image: "images/london-property.jpg",
+    image: "../images/london-property.jpg",
     title: "London Flat",
     price: 25,
     location: {
@@ -92,7 +96,7 @@ const properties: Property[] = [
     isAvailable: true,
   },
   {
-    image: "images/malaysian-hotel.jpeg",
+    image: "../images/malaysian-hotel.jpeg",
     title: "Malia Hotel",
     price: 35,
     location: {
@@ -154,21 +158,9 @@ footer.innerHTML =
   currentLocation[2] +
   "°";
 
-// Class constructor for creating main property
-class MainProperty {
-  src: string;
-  title: string;
-  reviews: Review[];
-  constructor(src: string, title: string, reviews: Review[]) {
-    this.src = src;
-    this.title = title;
-    this.reviews = reviews;
-  }
-}
-
 // Uses class MainProperty to create italian house review
 let yourMainProperty = new MainProperty(
-  "images/italian-property.jpg",
+  "../images/italian-property.jpg",
   "Italian House",
   [
     {
