@@ -7,13 +7,19 @@ import { Permissions, LoyaltyUser } from "./enums";
 // imports type Alias
 import { Price, Country } from "./types";
 
+// imports review interface
+import { Review } from "./interfaces";
+
 const propertyContainer = document.querySelector(".properties");
+const reviewContainer = document.querySelector(".reviews");
+const container = document.querySelector(".container");
+const button = document.querySelector("button");
 const footer = document.querySelector(".footer");
 
 let isLoggedIn: boolean;
 
 // Declares reviews array
-const reviews: any[] = [
+const reviews: Review[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -31,7 +37,6 @@ const reviews: any[] = [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: "Great hosts, location was a bit further than said.",
   },
 ];
 
@@ -119,6 +124,24 @@ for (let i = 0; i < properties.length; i++) {
   showDetails(you.permissions, card, properties[i].price);
   propertyContainer.appendChild(card);
 }
+
+// Displays reviews on page
+let count = 0;
+function addReviews(array: Review[]): void {
+  if (!count) {
+    count++;
+    const topTwo = getTopTwoReviews(array);
+    for (let i = 0; i < topTwo.length; i++) {
+      const card = document.createElement("div");
+      card.classList.add("review-card");
+      card.innerHTML = topTwo[i].stars + " stars from " + topTwo[i].name;
+      reviewContainer.appendChild(card);
+    }
+    container.removeChild(button);
+  }
+}
+
+button.addEventListener("click", () => addReviews(reviews));
 
 // Footer for site
 let currentLocation = ["CapeTown", "17:46", 14];

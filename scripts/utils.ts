@@ -1,5 +1,7 @@
 // imports enum
-import { LoyaltyUser } from "./enums";
+import { Permissions, LoyaltyUser } from "./enums";
+
+import { Review } from "./interfaces";
 
 // Declares HTML element
 const returningUserDisplay = document.querySelector("#returning-user");
@@ -15,9 +17,9 @@ export function showReviewTotal(
   const iconDisplay = LoyaltyUser.GOLD_USER ? "⭐" : "";
   reviewTotalDisplay.innerHTML =
     value.toString() +
-    " Review" +
+    " review" +
     makeMultiple(value) +
-    "| last reviewed by " +
+    " | last reviewed by " +
     reviewer +
     " " +
     iconDisplay;
@@ -25,7 +27,7 @@ export function showReviewTotal(
 
 // Function to distplay if the user is returning or not
 export function populateUser(isReturning: boolean, userName: string) {
-  if (isReturning) {
+  if (isReturning == true) {
     returningUserDisplay.innerHTML = "back";
   }
   userNameDisplay.innerHTML = userName;
@@ -33,11 +35,11 @@ export function populateUser(isReturning: boolean, userName: string) {
 
 // Displays pricing
 export function showDetails(
-  authorityStatus: boolean | Permissions,
+  value: boolean | Permissions,
   element: HTMLDivElement,
   price: number
 ) {
-  if (authorityStatus) {
+  if (value) {
     const priceDisplay = document.createElement("div");
     priceDisplay.innerHTML = price.toString() + "/night";
     element.appendChild(priceDisplay);
@@ -49,4 +51,10 @@ export function makeMultiple(value: number): string {
   if (value > 1 || value == 0) {
     return "s";
   } else return "";
+}
+
+// Function to get top two reviews
+export function getTopTwoReviews(reviews: Review[]): Review[] {
+  const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
+  return sortedReviews.slice(0, 2);
 }
